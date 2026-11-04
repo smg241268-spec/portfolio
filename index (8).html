@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<title>まと｜初心者マーケターの作品集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1C2433; --paper:#EEF0F3; --surface:#FFFFFF; --slate:#5E6676;
+  --line:#CDD2DA; --accent:#2F5BD3; --accent-ink:#FFFFFF; --danger:#B3261E;
+  --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#E6E9EE; --paper:#141922; --surface:#1C2330; --slate:#9AA3B2;
+    --line:#2E3746; --accent:#7FA0F5; --accent-ink:#0E1420; --danger:#F2B8B5;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E6E9EE; --paper:#141922; --surface:#1C2330; --slate:#9AA3B2;
+  --line:#2E3746; --accent:#7FA0F5; --accent-ink:#0E1420; --danger:#F2B8B5;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+[hidden]{display:none!important}
+
+/* ---------- ログイン ---------- */
+.gate{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+.gate-art{position:relative;display:flex;justify-content:center;align-items:center;border-right:1px solid var(--line);overflow:hidden}
+.gate-title{writing-mode:vertical-rl;font-family:var(--serif);font-weight:700;font-size:clamp(4rem,11vw,9rem);line-height:1.1;letter-spacing:.12em;margin:0;color:var(--ink)}
+.gate-title small{display:block;font-size:.18em;font-weight:500;letter-spacing:.3em;color:var(--slate);margin-inline-start:.6em;line-height:1.8}
+.seal{position:absolute;right:12%;bottom:12%;width:64px;height:64px;border:2px solid var(--accent);border-radius:6px;display:grid;place-items:center;color:var(--accent);font-family:var(--serif);font-size:1.1rem;transform:rotate(-6deg)}
+.gate-form{display:flex;flex-direction:column;justify-content:center;padding:clamp(1.5rem,6vw,5rem);max-width:30rem;width:100%;margin:0 auto}
+.gate-form h2{font-family:var(--serif);font-size:1.6rem;font-weight:700;margin:0 0 .4rem;line-height:1.4}
+.gate-form p.lead{color:var(--slate);margin:0 0 2rem;font-size:.95rem}
+label{display:block;font-size:.9rem;font-weight:500;margin-bottom:.35rem}
+.field{margin-bottom:1.2rem}
+.field input{width:100%;padding:.75rem .9rem;background:var(--surface);border:1px solid var(--line);border-radius:4px;font-size:1rem}
+.field input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+.pw-wrap{position:relative}
+.pw-wrap input{padding-right:4.5rem}
+.pw-toggle{position:absolute;right:.4rem;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--slate);font-size:.85rem;padding:.3rem .5rem;cursor:pointer}
+.sns-pick{border:0;margin:0 0 1.2rem;padding:0}
+.sns-pick legend{font-size:.9rem;font-weight:500;margin-bottom:.45rem;padding:0}
+.sns-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}
+.sns-opt{position:relative}
+.sns-opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.sns-opt span{display:flex;align-items:center;gap:.55rem;padding:.65rem .8rem;border:1px solid var(--line);border-radius:4px;background:var(--surface);font-weight:500}
+.sns-opt svg{width:20px;height:20px;flex:none}
+.sns-opt input:checked + span{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);color:var(--accent)}
+.sns-opt input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.handle{position:relative}
+.handle .at{position:absolute;left:.9rem;top:50%;transform:translateY(-50%);color:var(--slate)}
+.handle input{padding-left:1.9rem}
+.hint{font-size:.8rem;color:var(--slate);margin-top:.3rem}
+.privacy{font-size:.8rem;color:var(--slate);margin:0 0 1.2rem;line-height:1.7}
+.who{font-size:.85rem;color:var(--slate)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1.4rem;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font-weight:700;cursor:pointer}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line);font-weight:500}
+.msg{min-height:1.6em;margin-top:1rem;font-size:.9rem;color:var(--danger)}
+.note{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.8rem;color:var(--slate);line-height:1.7}
+.spinner{width:1em;height:1em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- ポートフォリオ ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+body.in::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.top-inner{max-width:72rem;margin:0 auto;padding:.8rem clamp(1rem,4vw,2.5rem);display:flex;align-items:center;gap:1rem}
+.top-name{font-family:var(--serif);font-weight:700;font-size:1.15rem;margin-right:auto}
+.timer{font-size:.8rem;color:var(--slate)}
+.wrap{max-width:72rem;margin:0 auto;padding:clamp(2rem,6vw,4.5rem) clamp(1rem,4vw,2.5rem) 5rem}
+.intro{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(1.5rem,5vw,4rem);align-items:start;margin-bottom:clamp(3rem,8vw,6rem)}
+.intro h1{writing-mode:vertical-rl;font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.15;margin:0;letter-spacing:.1em}
+.intro .role{font-weight:700;margin:0 0 .8rem}
+.intro .bio{max-width:36em;margin:0 0 1.2rem;color:var(--ink)}
+.intro .contact{color:var(--slate);font-size:.9rem}
+.intro .contact a{color:var(--accent)}
+.sns{list-style:none;margin:1.4rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.6rem}
+.sns a{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .9rem .45rem .55rem;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;font-size:.88rem;background:var(--surface)}
+.sns a:hover{border-color:var(--accent)}
+.sns svg{width:18px;height:18px;flex:none}
+.sns .u{color:var(--slate)}
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:.3rem .95rem;font-size:.88rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.works{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,19rem),1fr));gap:clamp(1.2rem,3vw,2.2rem)}
+.work{background:none;border:0;padding:0;text-align:left;cursor:pointer;display:block;width:100%}
+.work svg{display:block;width:100%;height:auto;border-radius:3px}
+.work .meta{display:flex;justify-content:space-between;gap:1rem;margin-top:.7rem;font-size:.82rem;color:var(--slate)}
+.work h3{font-family:var(--serif);font-size:1.08rem;margin:.15rem 0 0;line-height:1.5;font-weight:700}
+.work:hover h3{text-decoration:underline;text-underline-offset:4px}
+.gallery{margin-bottom:clamp(4rem,10vw,7rem)}
+.gallery-head{display:flex;align-items:baseline;gap:1.2rem;flex-wrap:wrap;margin-bottom:.4rem}
+.gallery-head h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);line-height:1.2;margin:0;letter-spacing:.06em}
+.count{margin:0;color:var(--slate);font-size:.9rem}
+.gallery-lead{color:var(--slate);font-size:.9rem;margin:0 0 1.6rem;max-width:40em}
+.intro{border-top:1px solid var(--line);padding-top:clamp(2rem,5vw,3rem)}
+.intro h2{writing-mode:vertical-rl;font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15;margin:0;letter-spacing:.1em}
+dialog{overflow-y:auto;border:0;padding:0;margin:0;width:100vw;height:100%;max-width:none;max-height:none;background:var(--paper);color:var(--ink);display:none;flex-direction:column}
+dialog[open]{display:flex}
+dialog::backdrop{background:var(--paper)}
+.v-bar{display:flex;justify-content:space-between;align-items:center;padding:calc(.8rem + env(safe-area-inset-top,0px)) clamp(1rem,4vw,2.5rem) .8rem;border-bottom:1px solid var(--line)}
+.v-count{font-size:.9rem;color:var(--slate)}
+.v-stage{flex:none;height:min(42vh,440px);min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:clamp(.5rem,2vw,1.5rem);padding:clamp(1rem,3vw,2rem) clamp(.5rem,3vw,2rem)}
+.v-art{display:flex;justify-content:center;align-items:center;height:100%;min-height:0}
+.v-art svg{max-width:100%;max-height:100%;width:auto;height:100%;aspect-ratio:4/3;border-radius:3px}
+.v-nav{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.v-nav svg{width:22px;height:22px}
+.v-nav:disabled{opacity:.3;cursor:default}
+.d-links{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:1.2rem 0 1.6rem}
+.d-links .btn{text-decoration:none}
+.d-nolive{font-size:.88rem;color:var(--slate)}
+.tabs{display:flex;gap:.25rem;border-bottom:1px solid var(--line)}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:.6rem 1rem;font-weight:500;color:var(--slate);cursor:pointer;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.panel{padding-top:1rem}
+.code-bar{display:flex;align-items:center;gap:.8rem;margin-bottom:.6rem}
+.btn.small{padding:.45rem .9rem;font-size:.88rem}
+.copied{font-size:.85rem;color:var(--slate)}
+.code{margin:0;max-height:55vh;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:1rem;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.84rem;line-height:1.6;white-space:pre;tab-size:2}
+.manual{margin:0;padding-left:1.6rem}
+.manual li{margin-bottom:.6rem;padding-left:.2rem}
+.manual li::marker{color:var(--accent);font-weight:700}
+dialog .d-body{padding:1.2rem clamp(1rem,4vw,2.5rem) calc(2.4rem + env(safe-area-inset-bottom,0px));max-width:52rem;width:100%;margin:0 auto}
+dialog h3{font-family:var(--serif);font-size:1.4rem;margin:.2rem 0 .5rem;line-height:1.4}
+dialog .d-meta{font-size:.85rem;color:var(--slate)}
+@media (max-width:760px){.v-stage{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}.v-art{grid-column:1;grid-row:1}#vPrev,#vNext{grid-row:2;grid-column:1}#vPrev{justify-self:start}#vNext{justify-self:end}.v-art svg{height:100%;width:auto}.v-stage{height:min(38vh,320px)}}
+.protect{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.code{-webkit-user-select:text;user-select:text}
+
+@media (max-width:760px){
+  .gate{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+  .gate-art{border-right:0;border-bottom:1px solid var(--line);padding:2.5rem 1rem}
+  .gate-title{writing-mode:horizontal-tb;font-size:3rem;text-align:center}
+  .gate-title small{margin:0;margin-top:.4rem}
+  .seal{display:none}
+  .intro{grid-template-columns:1fr}
+  .intro h2{writing-mode:horizontal-tb;font-size:2rem}
+  .timer{display:none}
+}
+@media (prefers-reduced-motion:reduce){.spinner{animation:none}}
+</style>
+</head>
+<body class="in">
+<header class="top">
+  <div class="top-inner">
+    <span class="top-name" id="topName"></span>
+  </div>
+</header>
+<main class="wrap">
+  <section aria-labelledby="worksHead" class="gallery">
+    <div class="gallery-head">
+      <h1 id="worksHead">作品閲覧</h1>
+      <p class="count" id="count"></p>
+    </div>
+    <p class="gallery-lead">作品を選ぶと、公開版へのリンク・再現用コード・マニュアルを見られます。表示中は左右の矢印キーで前後の作品に移れます。</p>
+    <div class="filters" id="filters" role="group" aria-label="分類で絞り込む"></div>
+    <div class="works" id="works"></div>
+  </section>
+  <section class="intro" aria-labelledby="pName">
+    <h2 id="pName"></h2>
+    <div>
+      <p class="role" id="pRole"></p>
+      <p class="bio" id="pBio"></p>
+      <p class="contact">お問い合わせ：<a id="pContact"></a></p>
+    </div>
+  </section>
+</main>
+<dialog id="detail" aria-labelledby="dTitle">
+    <div class="v-bar">
+      <span class="v-count" id="vCount"></span>
+      <button class="btn ghost" id="dClose" type="button">一覧に戻る</button>
+    </div>
+    <div class="v-stage">
+      <button class="v-nav" id="vPrev" type="button" aria-label="前の作品"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div id="dArt" class="v-art"></div>
+      <button class="v-nav" id="vNext" type="button" aria-label="次の作品"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="d-body">
+      <div class="d-meta" id="dMeta"></div>
+      <h3 id="dTitle"></h3>
+      <p id="dDesc" style="margin:0"></p>
+      <div class="d-links">
+        <a class="btn" id="dLive" target="_blank" rel="noopener noreferrer">公開版を開く</a>
+        <span class="d-nolive" id="dNoLive">公開版リンクは準備中です</span>
+      </div>
+      <div class="tabs" role="tablist" aria-label="作品の資料">
+        <button type="button" role="tab" id="tabCode" aria-controls="panelCode" aria-selected="true">再現用コード</button>
+        <button type="button" role="tab" id="tabManual" aria-controls="panelManual" aria-selected="false" tabindex="-1">マニュアル</button>
+      </div>
+      <section id="panelCode" role="tabpanel" aria-labelledby="tabCode" class="panel">
+        <div class="code-bar"><button type="button" class="btn ghost small" id="copyCode">コードをコピー</button><span class="copied" id="copied" aria-live="polite"></span></div>
+        <pre class="code" tabindex="0"><code id="dCode"></code></pre>
+      </section>
+      <section id="panelManual" role="tabpanel" aria-labelledby="tabManual" class="panel" hidden>
+        <ol class="manual" id="dManual"></ol>
+      </section>
+    </div>
+  </dialog>
+<script>
+(() => {
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const NS = "http://www.w3.org/2000/svg";
+
+  /* ===== プロフィールと作品（edit.html で編集して保存すると、ここが書き換わります） ===== */
+  /* DATA_START */
+  const PROFILE = {
+  "name": "まと",
+  "role": "初心者マーケター",
+  "bio": "マーケティングを学びながら、LPや集客用のツールを自分で作っています。作品ごとに、実際に動く公開版・同じものを作れる再現用コード・作り方のマニュアルを載せています。",
+  "contact": "smg241268@gmail.com"
+};
+  const WORKS = [];
+  /* DATA_END */
+
+  const PALETTE = [["#1F3B57","#E8B04A","circle"],["#4F6F52","#F2E7D5","leaf"],["#F4F0E6","#B5452F","bars"],["#2B5DAB","#9FD3E6","waves"],["#6B4E3D","#C9B79C","arch"],["#1B1E3A","#F7C873","grid"]];
+  const okUrl = u => /^https?:\/\/[^\s"'<>]+$/i.test(u || "");
+  const works = WORKS.map((w, i) => { const p = PALETTE[i % PALETTE.length]; return Object.assign({c1:p[0], c2:p[1], shape:p[2], cat:"その他", year:"", desc:"", url:"", code:"", manual:[]}, w); });
+  let curCat = null, shown = [], pos = 0;
+
+    function el(tag, attrs){ const n = document.createElementNS(NS, tag); for (const a in attrs) n.setAttribute(a, attrs[a]); return n; }
+  function art(w){
+    const s = el("svg", {viewBox:"0 0 400 300", role:"img"});
+    s.setAttribute("aria-label", w.title + "のサムネイル");
+    s.appendChild(el("rect", {width:400, height:300, fill:w.c1}));
+    const c = w.c2;
+    switch (w.shape){
+      case "circle": s.appendChild(el("circle",{cx:200,cy:150,r:78,fill:"none",stroke:c,"stroke-width":14}));
+                     s.appendChild(el("line",{x1:200,y1:60,x2:200,y2:240,stroke:c,"stroke-width":14})); break;
+      case "leaf":   s.appendChild(el("path",{d:"M120 230 C120 120 220 70 300 70 C300 170 230 230 120 230Z",fill:c})); break;
+      case "bars":   [0,1,2].forEach(i => s.appendChild(el("rect",{x:110+i*70,y:60+i*30,width:44,height:180-i*30,fill:c,opacity:1-i*.25}))); break;
+      case "waves":  [0,1,2,3].forEach(i => s.appendChild(el("path",{d:`M0 ${110+i*40} Q100 ${70+i*40} 200 ${110+i*40} T400 ${110+i*40}`,fill:"none",stroke:c,"stroke-width":10,opacity:1-i*.2}))); break;
+      case "arch":   s.appendChild(el("path",{d:"M130 250 V150 A70 70 0 0 1 270 150 V250Z",fill:c})); break;
+      default:       for (let x=0;x<4;x++) for (let y=0;y<3;y++) s.appendChild(el("rect",{x:70+x*68,y:55+y*68,width:42,height:42,fill:c,opacity:((x+y)%3===0)?1:.35}));
+    }
+    return s;
+  }
+
+
+
+  /* ---- プロフィール ---- */
+  document.title = PROFILE.name + "｜" + PROFILE.role + "の作品集";
+  $("topName").textContent = PROFILE.name;
+  $("pName").textContent = PROFILE.name;
+  $("pRole").textContent = PROFILE.role;
+  $("pBio").textContent = PROFILE.bio;
+  const a = $("pContact"); a.textContent = PROFILE.contact; a.href = "mailto:" + PROFILE.contact;
+
+  /* ---- 一覧 ---- */
+  function renderFilters(){
+    const cats = ["すべて", ...new Set(works.map(w => w.cat))];
+    const f = $("filters"); f.replaceChildren();
+    cats.forEach(c => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.textContent = c;
+      b.setAttribute("aria-pressed", String(c === (curCat || "すべて")));
+      b.addEventListener("click", () => { curCat = c === "すべて" ? null : c; renderFilters(); renderWorks(); });
+      f.appendChild(b);
+    });
+  }
+  function renderWorks(){
+    const box = $("works"); box.replaceChildren();
+    shown = works.filter(w => !curCat || w.cat === curCat);
+    $("count").textContent = shown.length ? `${shown.length}点` + (curCat ? `（${curCat}）` : "") : "";
+    $("filters").hidden = !works.length;
+    if (!shown.length){ const p = document.createElement("p"); p.className = "gallery-lead"; p.textContent = "作品は準備中です。"; box.appendChild(p); }
+    shown.forEach((w, i) => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "work";
+      b.appendChild(art(w));
+      const m = document.createElement("div"); m.className = "meta";
+      const c = document.createElement("span"); c.textContent = w.cat;
+      const y = document.createElement("span"); y.textContent = w.year;
+      m.append(c, y);
+      const h = document.createElement("h3"); h.textContent = w.title;
+      b.append(m, h);
+      b.addEventListener("click", () => openDetail(i, b));
+      box.appendChild(b);
+    });
+  }
+
+  /* ---- 詳細 ---- */
+  const dlg = $("detail");
+  let opener = null;
+  function show(i){
+    pos = i; const w = shown[i];
+    $("dArt").replaceChildren(art(w));
+    $("vCount").textContent = `${i + 1} / ${shown.length}`;
+    $("dMeta").textContent = w.cat + (w.year ? "／" + w.year + "年" : "");
+    $("dTitle").textContent = w.title;
+    $("dDesc").textContent = w.desc;
+    const live = $("dLive"), ok = okUrl(w.url);
+    live.hidden = !ok; $("dNoLive").hidden = ok;
+    if (ok) live.href = w.url; else live.removeAttribute("href");
+    $("dCode").textContent = w.code || "コードはまだ登録されていません。";
+    $("copyCode").hidden = !w.code; $("copied").textContent = "";
+    const ol = $("dManual"); ol.replaceChildren();
+    (Array.isArray(w.manual) ? w.manual : []).filter(Boolean).forEach(s => { const li = document.createElement("li"); li.textContent = s; ol.appendChild(li); });
+    if (!ol.children.length){ const li = document.createElement("li"); li.textContent = "マニュアルはまだ登録されていません。"; ol.appendChild(li); }
+    $("vPrev").disabled = i === 0; $("vNext").disabled = i === shown.length - 1;
+  }
+  function openDetail(i, from){ opener = from; selectTab("tabCode"); show(i); if (!dlg.open) dlg.showModal(); document.body.style.overflow = "hidden"; }
+  const tabs = [["tabCode","panelCode"],["tabManual","panelManual"]];
+  function selectTab(id){ tabs.forEach(([t,p]) => { const on = t === id; $(t).setAttribute("aria-selected", String(on)); $(t).tabIndex = on ? 0 : -1; $(p).hidden = !on; }); }
+  tabs.forEach(([t], i) => {
+    $(t).addEventListener("click", () => selectTab(t));
+    $(t).addEventListener("keydown", e => { if (e.key === "ArrowRight" || e.key === "ArrowLeft"){ e.preventDefault(); e.stopPropagation(); const n = tabs[(i + 1) % 2][0]; selectTab(n); $(n).focus(); } });
+  });
+  $("copyCode").addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText($("dCode").textContent); $("copied").textContent = "コピーしました"; }
+    catch { const r = document.createRange(); r.selectNodeContents($("dCode")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $("copied").textContent = "選択しました。Ctrl＋C（Macは⌘＋C）でコピーしてください"; }
+  });
+  const step = d => { const n = pos + d; if (n >= 0 && n < shown.length) show(n); };
+  $("vPrev").addEventListener("click", () => step(-1));
+  $("vNext").addEventListener("click", () => step(1));
+  $("dClose").addEventListener("click", () => dlg.close());
+  dlg.addEventListener("close", () => { document.body.style.overflow = ""; const cards = $("works").querySelectorAll(".work"); (cards[pos] || opener)?.focus(); });
+  dlg.addEventListener("keydown", e => {
+    if (e.target.closest && e.target.closest(".code, .tabs")) return;
+    if (e.key === "ArrowLeft"){ e.preventDefault(); step(-1); }
+    if (e.key === "ArrowRight"){ e.preventDefault(); step(1); }
+  });
+  let sx = null;
+  document.querySelector(".v-stage").addEventListener("touchstart", e => { sx = e.touches[0].clientX; }, {passive:true});
+  document.querySelector(".v-stage").addEventListener("touchend", e => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1); });
+
+  renderFilters(); renderWorks();
+})();
+</script>
+
+</body>
+</html>
